@@ -1,0 +1,3399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ØNECART — India Shopping & Services Directory</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   LIGHT THEME
+========================================================= */
+
+:root {
+
+    --bg: #f5f6f8;
+    --card: rgba(255,255,255,.72);
+    --card-solid: #ffffff;
+
+    --text: #111111;
+    --muted: #707070;
+
+    --border: rgba(0,0,0,.08);
+
+    --accent: #111111;
+    --accent-text: #ffffff;
+
+    --danger: #d93025;
+    --success: #188038;
+
+    --input: rgba(255,255,255,.65);
+
+    --glass:
+        rgba(255,255,255,.62);
+
+    --glass-border:
+        rgba(255,255,255,.75);
+
+    --shadow:
+        0 15px 45px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   DARK THEME
+========================================================= */
+
+body.dark {
+
+    --bg: #070707;
+
+    --card: rgba(255,255,255,.055);
+    --card-solid: #111111;
+
+    --text: #f5f5f5;
+    --muted: #999999;
+
+    --border: rgba(255,255,255,.10);
+
+    --accent: #ffffff;
+    --accent-text: #000000;
+
+    --input: rgba(255,255,255,.055);
+
+    --glass:
+        rgba(20,20,20,.58);
+
+    --glass-border:
+        rgba(255,255,255,.10);
+
+    --shadow:
+        0 20px 60px rgba(0,0,0,.45);
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(120,120,120,.08),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 85% 30%,
+            rgba(120,120,120,.06),
+            transparent 30%
+        ),
+
+        var(--bg);
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(24px)
+        saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(160%);
+
+    border-bottom:
+        1px solid var(--border);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.04);
+}
+
+
+.header-inner {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 18px 22px;
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 16px;
+}
+
+
+.brand h1 {
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+    letter-spacing: -.7px;
+}
+
+
+.brand p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   HEADER ACTIONS
+========================================================= */
+
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.count {
+
+    background: var(--accent);
+
+    color: var(--accent-text);
+
+    padding: 8px 12px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.theme-toggle {
+
+    width: 40px;
+
+    height: 40px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--card);
+
+    color: var(--text);
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    backdrop-filter: blur(15px);
+
+    transition: .2s;
+}
+
+
+.theme-toggle:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.12);
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-box {
+
+    position: relative;
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    height: 48px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 0 18px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    background:
+        var(--input);
+
+    color: var(--text);
+
+    backdrop-filter:
+        blur(15px);
+
+    transition: .2s;
+}
+
+
+.search-box input::placeholder {
+
+    color: var(--muted);
+}
+
+
+.search-box input:focus {
+
+    border-color:
+        rgba(120,120,120,.6);
+
+    box-shadow:
+        0 0 0 4px rgba(120,120,120,.08);
+}
+
+
+/* =========================================================
+   CATEGORY NAV
+========================================================= */
+
+.category-wrapper {
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 18px 22px 4px;
+}
+
+
+.category-scroll {
+
+    display: flex;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+
+    padding-bottom: 5px;
+}
+
+
+.category-scroll::-webkit-scrollbar {
+
+    display: none;
+}
+
+
+.category-btn {
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--glass);
+
+    color: var(--text);
+
+    border-radius: 12px;
+
+    padding: 10px 14px;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: .2s;
+
+    backdrop-filter:
+        blur(16px);
+}
+
+
+.category-btn:hover,
+.category-btn.active {
+
+    background:
+        var(--accent);
+
+    color:
+        var(--accent-text);
+
+    border-color:
+        var(--accent);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding:
+        20px 22px 50px;
+}
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+.wishlist-section {
+
+    margin-bottom: 38px;
+
+    display: none;
+}
+
+
+.wishlist-section.show {
+
+    display: block;
+}
+
+
+.wishlist-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+
+.wishlist-title {
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.wishlist-subtitle {
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+
+.clear-wishlist {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.clear-wishlist:hover {
+
+    color: var(--text);
+}
+
+
+.wishlist-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   WISHLIST HEART
+========================================================= */
+
+.wishlist-btn {
+
+    position: absolute;
+
+    top: 10px;
+
+    left: 10px;
+
+    width: 36px;
+
+    height: 36px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 50%;
+
+    background:
+        rgba(128,128,128,.10);
+
+    color:
+        var(--muted);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    z-index: 10;
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    transition:
+        transform .2s ease,
+        color .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+
+.wishlist-btn:hover {
+
+    transform:
+        scale(1.08);
+
+    color:
+        var(--text);
+}
+
+
+.wishlist-btn.active {
+
+    color:
+        #ff2d55;
+
+    background:
+        rgba(255,45,85,.10);
+
+    border-color:
+        rgba(255,45,85,.25);
+}
+
+
+.wishlist-btn:active {
+
+    transform:
+        scale(.92);
+}
+
+
+/* =========================================================
+   RECENTLY VIEWED
+========================================================= */
+
+.recent-section {
+
+    margin-bottom: 38px;
+
+    display: none;
+}
+
+
+.recent-section.show {
+
+    display: block;
+}
+
+
+.recent-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+
+.recent-title {
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.recent-subtitle {
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+
+.clear-recent {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.clear-recent:hover {
+
+    color: var(--text);
+}
+
+
+.recent-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+
+    margin-bottom: 38px;
+}
+
+
+.section-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 14px;
+
+    gap: 15px;
+}
+
+
+.section-title {
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.section-count {
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   PLATFORM GRID
+========================================================= */
+
+.platform-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   PLATFORM CARD
+========================================================= */
+
+.platform-card {
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 17px;
+
+    cursor: pointer;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease,
+        background .25s ease;
+
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 150px;
+
+    backdrop-filter:
+        blur(18px)
+        saturate(150%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(150%);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.035);
+}
+
+
+.platform-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -80px;
+
+    right: -80px;
+
+    width: 160px;
+
+    height: 160px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.08);
+
+    filter:
+        blur(20px);
+
+    pointer-events: none;
+}
+
+
+.platform-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(140,140,140,.35);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.platform-card:active {
+
+    transform:
+        scale(.98);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    width: 56px;
+
+    height: 56px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(128,128,128,.08);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    margin-bottom: 14px;
+
+    border:
+        1px solid var(--border);
+}
+
+
+.logo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 8px;
+}
+
+
+.logo-fallback {
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   PLATFORM TEXT
+========================================================= */
+
+.platform-name {
+
+    font-weight: 750;
+
+    font-size: 15px;
+
+    line-height: 1.25;
+
+    margin-bottom: 5px;
+}
+
+
+.platform-subcategory {
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status {
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .4px;
+}
+
+
+.status.active {
+
+    color:
+        var(--success);
+}
+
+
+.status.discontinued {
+
+    color:
+        var(--danger);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty {
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+    color: var(--muted);
+
+    display: none;
+}
+
+
+.empty h2 {
+
+    color: var(--text);
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.65);
+
+    z-index: 500;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 18px;
+
+    backdrop-filter:
+        blur(12px);
+}
+
+
+.modal.show {
+
+    display: flex;
+}
+
+
+.modal-content {
+
+    background:
+        var(--glass);
+
+    color:
+        var(--text);
+
+    width:
+        min(520px, 100%);
+
+    max-height:
+        90vh;
+
+    overflow-y: auto;
+
+    border-radius:
+        24px;
+
+    padding:
+        25px;
+
+    position:
+        relative;
+
+    border:
+        1px solid var(--glass-border);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.35);
+
+    backdrop-filter:
+        blur(30px)
+        saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(160%);
+}
+
+
+.close {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    background:
+        rgba(128,128,128,.12);
+
+    color:
+        var(--text);
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+.modal-logo {
+
+    width: 72px;
+
+    height: 72px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(128,128,128,.10);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    margin-bottom: 16px;
+
+    border:
+        1px solid var(--border);
+}
+
+
+.modal-logo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 10px;
+}
+
+
+.modal h2 {
+
+    font-size: 24px;
+
+    margin-bottom: 7px;
+}
+
+
+.modal-category {
+
+    color:
+        var(--muted);
+
+    font-size: 13px;
+
+    margin-bottom: 18px;
+}
+
+
+.modal-description {
+
+    line-height: 1.6;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+.details {
+
+    display: grid;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.detail {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 9px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    font-size: 13px;
+}
+
+
+.detail span:first-child {
+
+    color:
+        var(--muted);
+}
+
+
+.detail span:last-child {
+
+    text-align: right;
+
+    font-weight: 600;
+}
+
+
+.visit-btn {
+
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background:
+        var(--accent);
+
+    color:
+        var(--accent-text);
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.visit-btn:hover {
+
+    transform:
+        translateY(-1px);
+
+    opacity: .88;
+}
+
+
+/* =========================================================
+   PROFESSIONAL FOOTER
+========================================================= */
+
+footer {
+
+    margin-top: 20px;
+
+    padding:
+        55px 22px 25px;
+
+    border-top:
+        1px solid var(--border);
+
+    background:
+        rgba(128,128,128,.035);
+}
+
+
+.footer-inner {
+
+    max-width: 1400px;
+
+    margin: auto;
+}
+
+
+.footer-top {
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        repeat(3, 1fr);
+
+    gap: 45px;
+
+    padding-bottom: 40px;
+}
+
+
+.footer-brand h2 {
+
+    font-size: 22px;
+
+    font-weight: 850;
+
+    margin-bottom: 9px;
+}
+
+
+.footer-brand p {
+
+    max-width: 360px;
+
+    color:
+        var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.footer-column h3 {
+
+    font-size: 13px;
+
+    margin-bottom: 14px;
+
+    font-weight: 800;
+}
+
+
+.footer-links {
+
+    display: grid;
+
+    gap: 9px;
+}
+
+
+.footer-links button {
+
+    border: 0;
+
+    background: transparent;
+
+    color:
+        var(--muted);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: .2s;
+}
+
+
+.footer-links button:hover {
+
+    color:
+        var(--text);
+
+    transform:
+        translateX(3px);
+}
+
+
+.footer-bottom {
+
+    border-top:
+        1px solid var(--border);
+
+    padding-top: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+
+.copyright {
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+.footer-note {
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .footer-top {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 30px;
+    }
+
+    .footer-brand {
+
+        grid-column:
+            1 / -1;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .header-inner {
+
+        padding: 15px;
+    }
+
+    .brand h1 {
+
+        font-size: 19px;
+    }
+
+    .brand p {
+
+        font-size: 11px;
+    }
+
+    .category-wrapper {
+
+        padding:
+            14px 15px 0;
+    }
+
+    main {
+
+        padding:
+            17px 15px 40px;
+    }
+
+    .platform-grid,
+    .recent-grid,
+    .wishlist-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+
+        gap: 10px;
+    }
+
+    .platform-card {
+
+        padding: 13px;
+
+        min-height: 145px;
+
+        border-radius: 15px;
+    }
+
+    .logo {
+
+        width: 48px;
+
+        height: 48px;
+
+        border-radius: 13px;
+    }
+
+    .platform-name {
+
+        font-size: 13px;
+    }
+
+    .section-title,
+    .recent-title,
+    .wishlist-title {
+
+        font-size: 18px;
+    }
+
+    .footer-top {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 25px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .platform-grid,
+    .recent-grid,
+    .wishlist-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .footer-top {
+
+        grid-template-columns:
+            1fr;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+<div class="header-inner">
+
+<div class="brand">
+
+<div>
+
+<h1>ØNECART</h1>
+
+<p>
+Shopping • Food • Grocery • Travel • Services • More
+</p>
+
+</div>
+
+
+<div class="header-actions">
+
+<div class="count" id="platformCount">
+0 Platforms
+</div>
+
+<button
+class="theme-toggle"
+id="themeToggle"
+onclick="toggleTheme()"
+aria-label="Toggle dark mode"
+>
+🌙
+</button>
+
+</div>
+
+</div>
+
+
+<div class="search-box">
+
+<input
+id="searchInput"
+type="search"
+placeholder="Search Amazon, Swiggy, pharmacy, travel..."
+autocomplete="off"
+>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<!-- =========================================================
+     CATEGORY NAV
+========================================================= -->
+
+<div class="category-wrapper">
+
+<div
+class="category-scroll"
+id="categoryNav"
+>
+
+<button
+class="category-btn active"
+data-category="ALL"
+onclick="selectCategory('ALL')"
+>
+
+All
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main>
+
+
+<!-- =========================================================
+     WISHLIST
+========================================================= -->
+
+<section
+class="wishlist-section"
+id="wishlistSection"
+>
+
+<div class="wishlist-header">
+
+<div>
+
+<div class="wishlist-title">
+❤️ Wishlist
+</div>
+
+<div class="wishlist-subtitle">
+Your saved platforms
+</div>
+
+</div>
+
+
+<button
+class="clear-wishlist"
+onclick="clearWishlist()"
+>
+
+Clear
+
+</button>
+
+</div>
+
+
+<div
+class="wishlist-grid"
+id="wishlistGrid"
+></div>
+
+</section>
+
+
+
+<!-- =========================================================
+     RECENTLY VIEWED
+========================================================= -->
+
+<section
+class="recent-section"
+id="recentSection"
+>
+
+<div class="recent-header">
+
+<div>
+
+<div class="recent-title">
+Recently Viewed
+</div>
+
+<div class="recent-subtitle">
+Your recently opened platforms
+</div>
+
+</div>
+
+
+<button
+class="clear-recent"
+onclick="clearRecent()"
+>
+
+Clear
+
+</button>
+
+</div>
+
+
+<div
+class="recent-grid"
+id="recentGrid"
+></div>
+
+</section>
+
+
+
+<!-- DIRECTORY -->
+
+<div id="directory"></div>
+
+
+<!-- EMPTY -->
+
+<div
+class="empty"
+id="emptyState"
+>
+
+<h2>
+No platforms found
+</h2>
+
+<p>
+Try another platform name, category or service.
+</p>
+
+</div>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     PROFESSIONAL FOOTER
+========================================================= -->
+
+<footer>
+
+<div class="footer-inner">
+
+
+<div class="footer-top">
+
+
+<!-- BRAND -->
+
+<div class="footer-brand">
+
+<h2>
+ØNECART
+</h2>
+
+<p>
+
+Your simple gateway to India's shopping,
+food, grocery, travel, healthcare,
+services and consumer platforms.
+
+</p>
+
+</div>
+
+
+
+<!-- EXPLORE -->
+
+<div class="footer-column">
+
+<h3>
+Explore
+</h3>
+
+<div class="footer-links">
+
+<button onclick="selectCategory('ALL')">
+All Platforms
+</button>
+
+<button onclick="selectCategory('E-Commerce & General Shopping')">
+Shopping
+</button>
+
+<button onclick="selectCategory('Food Delivery')">
+Food Delivery
+</button>
+
+<button onclick="selectCategory('Grocery & Supermarkets')">
+Grocery
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SERVICES -->
+
+<div class="footer-column">
+
+<h3>
+Services
+</h3>
+
+<div class="footer-links">
+
+<button onclick="selectCategory('Pharmacy & Healthcare')">
+Healthcare
+</button>
+
+<button onclick="selectCategory('Travel & Tickets')">
+Travel
+</button>
+
+<button onclick="selectCategory('Hotels & Accommodation')">
+Hotels
+</button>
+
+<button onclick="selectCategory('Local Services')">
+Local Services
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- MORE -->
+
+<div class="footer-column">
+
+<h3>
+More
+</h3>
+
+<div class="footer-links">
+
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+Back to Top
+</button>
+
+<button onclick="toggleTheme()">
+Toggle Theme
+</button>
+
+<button onclick="clearRecent()">
+Clear Recent
+</button>
+
+<button onclick="scrollToWishlist()">
+Wishlist
+</button>
+
+<button onclick="selectCategory('ALL')">
+Browse Directory
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FOOTER BOTTOM -->
+
+<div class="footer-bottom">
+
+<div class="copyright">
+
+© <span id="copyrightYear"></span>
+ØNECART. All rights reserved.
+
+<br>
+
+ØNECART is an independent directory and is not affiliated
+with the brands listed unless explicitly stated.
+
+</div>
+
+
+<div class="footer-note">
+
+Made for easier discovery of Indian consumer services.
+
+</div>
+
+</div>
+
+
+</div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     PLATFORM MODAL
+========================================================= -->
+
+<div
+class="modal"
+id="platformModal"
+onclick="closeModalOutside(event)"
+>
+
+<div
+class="modal-content"
+onclick="event.stopPropagation()"
+>
+
+<button
+class="close"
+onclick="closeModal()"
+>
+
+×
+
+</button>
+
+
+<div
+class="modal-logo"
+id="modalLogo"
+></div>
+
+
+<h2
+id="modalName"
+></h2>
+
+
+<div
+class="modal-category"
+id="modalCategory"
+></div>
+
+
+<div
+class="modal-description"
+id="modalDescription"
+></div>
+
+
+<div
+class="details"
+id="modalDetails"
+></div>
+
+
+<button
+class="visit-btn"
+id="visitButton"
+>
+
+Visit Official Website
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+
+/*
+OPTION 1 — External JSON
+
+Put:
+
+index.html
+platforms.json
+
+in the same folder.
+
+Then keep:
+
+USE_EXTERNAL_JSON = true
+*/
+
+const USE_EXTERNAL_JSON = true;
+
+const JSON_FILE = "platforms.json";
+
+
+/*
+OPTION 2 — Embedded JSON
+
+Set:
+
+USE_EXTERNAL_JSON = false
+
+and put your JSON object inside DIRECTORY_DATA.
+*/
+
+const DIRECTORY_DATA = {
+
+    "directory_title":
+        "All-in-One India Shopping & Consumer Services Directory",
+
+    "research_date":
+        "2026-10-04",
+
+    "country":
+        "India",
+
+    "platform_count":
+        0,
+
+    "platforms":
+        []
+
+};
+
+
+
+/* =========================================================
+   OPTIONAL LOGO DATABASE
+========================================================= */
+
+const LOGO_DATABASE = {
+
+    /*
+    "Amazon India":
+        "assets/logos/amazon.png",
+
+    "Flipkart":
+        "assets/logos/flipkart.png",
+
+    "Swiggy":
+        "assets/logos/swiggy.png",
+
+    "Zomato":
+        "assets/logos/zomato.png"
+    */
+
+};
+
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let directoryData = null;
+
+let selectedCategory = "ALL";
+
+let searchTerm = "";
+
+
+
+/* =========================================================
+   THEME SYSTEM
+========================================================= */
+
+function initializeTheme() {
+
+    const savedTheme =
+        localStorage.getItem("onecart-theme");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark");
+
+        updateThemeIcon();
+
+    }
+
+}
+
+
+function toggleTheme() {
+
+    document.body.classList.toggle("dark");
+
+    const isDark =
+        document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "onecart-theme",
+        isDark ? "dark" : "light"
+    );
+
+    updateThemeIcon();
+
+}
+
+
+function updateThemeIcon() {
+
+    const button =
+        document.getElementById("themeToggle");
+
+    if (!button) return;
+
+    const isDark =
+        document.body.classList.contains("dark");
+
+    button.textContent =
+        isDark ? "Ø" : "O";
+
+}
+
+
+
+initializeTheme();
+
+
+
+/* =========================================================
+   COPYRIGHT YEAR
+========================================================= */
+
+document.getElementById(
+    "copyrightYear"
+).textContent = new Date().getFullYear();
+
+
+
+/* =========================================================
+   LOAD JSON
+========================================================= */
+
+async function loadDirectory() {
+
+    try {
+
+        if (USE_EXTERNAL_JSON) {
+
+            const response =
+                await fetch(JSON_FILE);
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Could not load " + JSON_FILE
+                );
+
+            }
+
+            directoryData =
+                await response.json();
+
+        } else {
+
+            directoryData =
+                DIRECTORY_DATA;
+
+        }
+
+
+        initializeDirectory();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById(
+            "directory"
+        ).innerHTML = `
+
+        <div
+        class="empty"
+        style="display:block"
+        >
+
+            <h2>
+                Could not load directory
+            </h2>
+
+            <p>
+                Make sure
+                <b>${JSON_FILE}</b>
+                is in the same folder as this HTML file.
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initializeDirectory() {
+
+    if (
+        !directoryData ||
+        !Array.isArray(
+            directoryData.platforms
+        )
+    ) {
+
+        console.error(
+            "Invalid JSON format."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "platformCount"
+    ).textContent =
+        directoryData.platforms.length +
+        " Platforms";
+
+
+    createCategoryButtons();
+
+    renderDirectory();
+
+    renderWishlist();
+
+    renderRecent();
+
+}
+
+
+
+/* =========================================================
+   CATEGORY BUTTONS
+========================================================= */
+
+function createCategoryButtons() {
+
+    const nav =
+        document.getElementById(
+            "categoryNav"
+        );
+
+
+    nav.querySelectorAll(
+        ".category-btn:not([data-category='ALL'])"
+    ).forEach(
+        button => button.remove()
+    );
+
+
+    const categories = [
+        ...new Set(
+
+            directoryData.platforms
+
+                .map(
+                    platform =>
+                        platform.category
+                )
+
+                .filter(Boolean)
+
+        )
+    ];
+
+
+    categories.sort(
+        (a,b) =>
+            a.localeCompare(b)
+    );
+
+
+    categories.forEach(
+        category => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "category-btn";
+
+            button.dataset.category =
+                category;
+
+            button.textContent =
+                category;
+
+            button.onclick =
+                () => selectCategory(category);
+
+            nav.appendChild(button);
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   SELECT CATEGORY
+========================================================= */
+
+function selectCategory(category) {
+
+    selectedCategory =
+        category;
+
+
+    document
+        .querySelectorAll(
+            ".category-btn"
+        )
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+
+                button.dataset.category
+                    === category
+            );
+
+        });
+
+
+    renderDirectory();
+
+}
+
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+    "input",
+    function () {
+
+        searchTerm =
+            this.value
+                .trim()
+                .toLowerCase();
+
+        renderDirectory();
+
+    }
+);
+
+
+
+/* =========================================================
+   FILTER PLATFORMS
+========================================================= */
+
+function getFilteredPlatforms() {
+
+    return directoryData.platforms.filter(
+        platform => {
+
+            const categoryMatch =
+                selectedCategory === "ALL" ||
+                platform.category ===
+                    selectedCategory;
+
+
+            const searchableText = [
+
+                platform.platform_name,
+
+                platform.category,
+
+                platform.subcategory,
+
+                platform.platform_type,
+
+                platform.short_description,
+
+                platform.service_area,
+
+                platform.parent_company
+
+            ]
+
+            .filter(Boolean)
+
+            .join(" ")
+
+            .toLowerCase();
+
+
+            const searchMatch =
+                !searchTerm ||
+                searchableText.includes(
+                    searchTerm
+                );
+
+
+            return (
+                categoryMatch &&
+                searchMatch
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   RENDER DIRECTORY
+========================================================= */
+
+function renderDirectory() {
+
+    const directory =
+        document.getElementById(
+            "directory"
+        );
+
+    directory.innerHTML = "";
+
+
+    const platforms =
+        getFilteredPlatforms();
+
+
+    if (platforms.length === 0) {
+
+        document.getElementById(
+            "emptyState"
+        ).style.display = "block";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "emptyState"
+    ).style.display = "none";
+
+
+    const groups = {};
+
+
+    platforms.forEach(
+        platform => {
+
+            if (
+                !groups[
+                    platform.category
+                ]
+            ) {
+
+                groups[
+                    platform.category
+                ] = [];
+
+            }
+
+
+            groups[
+                platform.category
+            ].push(platform);
+
+        }
+    );
+
+
+    Object.keys(groups)
+
+        .sort(
+            (a,b) =>
+                a.localeCompare(b)
+        )
+
+        .forEach(
+            category => {
+
+                groups[category].sort(
+                    (a,b) =>
+                        a.platform_name
+                            .localeCompare(
+                                b.platform_name
+                            )
+                );
+
+
+                const section =
+                    document.createElement(
+                        "section"
+                    );
+
+
+                section.className =
+                    "section";
+
+
+                section.innerHTML = `
+
+                <div class="section-header">
+
+                    <div class="section-title">
+
+                        ${escapeHTML(category)}
+
+                    </div>
+
+                    <div class="section-count">
+
+                        ${groups[category].length}
+                        platforms
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="platform-grid"
+                ></div>
+
+                `;
+
+
+                const grid =
+                    section.querySelector(
+                        ".platform-grid"
+                    );
+
+
+                groups[category]
+                    .forEach(platform => {
+
+                        grid.appendChild(
+                            createPlatformCard(
+                                platform
+                            )
+                        );
+
+                    });
+
+
+                directory.appendChild(
+                    section
+                );
+
+            }
+        );
+
+}
+
+
+
+/* =========================================================
+   CREATE PLATFORM CARD
+========================================================= */
+
+function createPlatformCard(platform) {
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "platform-card";
+
+
+    const status =
+        String(
+            platform.active_or_discontinued ||
+            ""
+        ).toLowerCase();
+
+
+    const isActive =
+        status === "active";
+
+
+    const logoHTML =
+        getLogoHTML(platform);
+
+
+    card.innerHTML = `
+
+        <div
+            class="status
+            ${isActive ? "active" : "discontinued"}"
+        >
+
+            ${isActive ? "ACTIVE" : "STATUS"}
+
+        </div>
+
+
+        <div class="logo">
+
+            ${logoHTML}
+
+        </div>
+
+
+        <div class="platform-name">
+
+            ${escapeHTML(
+                platform.platform_name
+            )}
+
+        </div>
+
+
+        <div class="platform-subcategory">
+
+            ${escapeHTML(
+                platform.subcategory || ""
+            )}
+
+        </div>
+
+    `;
+
+
+    /* =====================================================
+       WISHLIST HEART
+    ===================================================== */
+
+    const wishlistButton =
+        document.createElement(
+            "button"
+        );
+
+
+    const wishlisted =
+        isWishlisted(platform);
+
+
+    wishlistButton.className =
+        "wishlist-btn" +
+        (wishlisted ? " active" : "");
+
+
+    wishlistButton.textContent =
+        wishlisted ? "♥" : "♡";
+
+
+    wishlistButton.title =
+        wishlisted
+            ? "Remove from wishlist"
+            : "Add to wishlist";
+
+
+    wishlistButton.setAttribute(
+        "aria-label",
+        wishlisted
+            ? "Remove from wishlist"
+            : "Add to wishlist"
+    );
+
+
+    wishlistButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            toggleWishlist(
+                platform,
+                wishlistButton
+            );
+
+        }
+    );
+
+
+    card.appendChild(
+        wishlistButton
+    );
+
+
+    /* =====================================================
+       CARD CLICK
+    ===================================================== */
+
+    card.addEventListener(
+        "click",
+        () => {
+
+            addToRecent(platform);
+
+            openPlatform(platform);
+
+        }
+    );
+
+
+    return card;
+
+}
+
+
+
+/* =========================================================
+   LOGO SYSTEM
+========================================================= */
+
+function getLogoHTML(platform) {
+
+    const name =
+        platform.platform_name || "";
+
+
+    if (LOGO_DATABASE[name]) {
+
+        return `
+
+        <img
+            src="${escapeAttribute(
+                LOGO_DATABASE[name]
+            )}"
+
+            alt="${escapeAttribute(name)}"
+
+            loading="lazy"
+
+            onerror="
+                this.parentElement.innerHTML =
+                createFallbackLogoHTML(
+                    '${escapeJS(name)}'
+                )
+            "
+        >
+
+        `;
+
+    }
+
+
+    if (platform.logo) {
+
+        return `
+
+        <img
+            src="${escapeAttribute(
+                platform.logo
+            )}"
+
+            alt="${escapeAttribute(name)}"
+
+            loading="lazy"
+
+            onerror="
+                this.parentElement.innerHTML =
+                createFallbackLogoHTML(
+                    '${escapeJS(name)}'
+                )
+            "
+        >
+
+        `;
+
+    }
+
+
+    return createFallbackLogoHTML(name);
+
+}
+
+
+
+/* =========================================================
+   FALLBACK LOGO
+========================================================= */
+
+function createFallbackLogoHTML(name) {
+
+    const initials =
+        name
+
+            .replace(
+                /[^a-zA-Z0-9 ]/g,
+                ""
+            )
+
+            .split(" ")
+
+            .filter(Boolean)
+
+            .slice(0,2)
+
+            .map(
+                word => word[0]
+            )
+
+            .join("")
+
+            .toUpperCase();
+
+
+    return `
+
+        <div class="logo-fallback">
+
+            ${escapeHTML(
+                initials || "?"
+            )}
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+const WISHLIST_KEY =
+    "onecart-wishlist";
+
+
+function getWishlist() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                WISHLIST_KEY
+            ) || "[]"
+        );
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+function isWishlisted(platform) {
+
+    const wishlist =
+        getWishlist();
+
+
+    return wishlist.some(
+        item =>
+            item.platform_name ===
+            platform.platform_name
+    );
+
+}
+
+
+function toggleWishlist(
+    platform,
+    button
+) {
+
+    let wishlist =
+        getWishlist();
+
+
+    const exists =
+        wishlist.some(
+            item =>
+                item.platform_name ===
+                platform.platform_name
+        );
+
+
+    if (exists) {
+
+        wishlist =
+            wishlist.filter(
+                item =>
+                    item.platform_name !==
+                    platform.platform_name
+            );
+
+    } else {
+
+        wishlist.unshift(
+            platform
+        );
+
+    }
+
+
+    localStorage.setItem(
+        WISHLIST_KEY,
+        JSON.stringify(wishlist)
+    );
+
+
+    renderWishlist();
+
+    renderDirectory();
+
+    renderRecent();
+
+}
+
+
+function renderWishlist() {
+
+    const section =
+        document.getElementById(
+            "wishlistSection"
+        );
+
+
+    const grid =
+        document.getElementById(
+            "wishlistGrid"
+        );
+
+
+    if (!section || !grid) {
+
+        return;
+
+    }
+
+
+    const wishlist =
+        getWishlist();
+
+
+    if (!wishlist.length) {
+
+        section.classList.remove(
+            "show"
+        );
+
+        grid.innerHTML = "";
+
+        return;
+
+    }
+
+
+    section.classList.add(
+        "show"
+    );
+
+
+    grid.innerHTML = "";
+
+
+    wishlist.forEach(
+        platform => {
+
+            grid.appendChild(
+                createPlatformCard(
+                    platform
+                )
+            );
+
+        }
+    );
+
+}
+
+
+function clearWishlist() {
+
+    localStorage.removeItem(
+        WISHLIST_KEY
+    );
+
+
+    renderWishlist();
+
+    renderDirectory();
+
+    renderRecent();
+
+}
+
+
+function scrollToWishlist() {
+
+    const section =
+        document.getElementById(
+            "wishlistSection"
+        );
+
+
+    renderWishlist();
+
+
+    if (
+        section &&
+        section.classList.contains("show")
+    ) {
+
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    } else {
+
+        /*
+        Wishlist is empty.
+        Nothing to scroll to.
+        */
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+}
+
+
+
+/* =========================================================
+   RECENTLY VIEWED
+========================================================= */
+
+const RECENT_KEY =
+    "onecart-recent-platforms";
+
+
+function getRecent() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                RECENT_KEY
+            ) || "[]"
+        );
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+function addToRecent(platform) {
+
+    let recent =
+        getRecent();
+
+
+    recent =
+        recent.filter(
+            item =>
+                item.platform_name !==
+                platform.platform_name
+        );
+
+
+    recent.unshift(platform);
+
+
+    recent =
+        recent.slice(0, 8);
+
+
+    localStorage.setItem(
+        RECENT_KEY,
+        JSON.stringify(recent)
+    );
+
+
+    renderRecent();
+
+}
+
+
+function renderRecent() {
+
+    const recent =
+        getRecent();
+
+
+    const section =
+        document.getElementById(
+            "recentSection"
+        );
+
+
+    const grid =
+        document.getElementById(
+            "recentGrid"
+        );
+
+
+    if (!recent.length) {
+
+        section.classList.remove(
+            "show"
+        );
+
+        return;
+
+    }
+
+
+    section.classList.add(
+        "show"
+    );
+
+
+    grid.innerHTML = "";
+
+
+    recent.forEach(
+        platform => {
+
+            grid.appendChild(
+                createPlatformCard(
+                    platform
+                )
+            );
+
+        }
+    );
+
+}
+
+
+function clearRecent() {
+
+    localStorage.removeItem(
+        RECENT_KEY
+    );
+
+    renderRecent();
+
+}
+
+
+
+/* =========================================================
+   OPEN PLATFORM
+========================================================= */
+
+function openPlatform(platform) {
+
+    const modal =
+        document.getElementById(
+            "platformModal"
+        );
+
+
+    document.getElementById(
+        "modalLogo"
+    ).innerHTML =
+        getLogoHTML(platform);
+
+
+    document.getElementById(
+        "modalName"
+    ).textContent =
+        platform.platform_name;
+
+
+    document.getElementById(
+        "modalCategory"
+    ).textContent =
+        `${platform.category} • ${
+            platform.subcategory || ""
+        }`;
+
+
+    document.getElementById(
+        "modalDescription"
+    ).textContent =
+        platform.short_description || "";
+
+
+    const details =
+        document.getElementById(
+            "modalDetails"
+        );
+
+
+    details.innerHTML = `
+
+        ${detailRow(
+            "Type",
+            platform.platform_type
+        )}
+
+        ${detailRow(
+            "Service Area",
+            platform.service_area
+        )}
+
+        ${detailRow(
+            "Parent Company",
+            platform.parent_company
+        )}
+
+        ${detailRow(
+            "Headquarters",
+            platform.headquarters_country
+        )}
+
+        ${detailRow(
+            "Android",
+            platform.android_available
+                ? "Available"
+                : "Not listed"
+        )}
+
+        ${detailRow(
+            "iOS",
+            platform.ios_available
+                ? "Available"
+                : "Not listed"
+        )}
+
+        ${detailRow(
+            "Status",
+            platform.active_or_discontinued
+        )}
+
+    `;
+
+
+    const visitButton =
+        document.getElementById(
+            "visitButton"
+        );
+
+
+    visitButton.onclick = () => {
+
+        if (
+            platform.official_website
+        ) {
+
+            window.open(
+                platform.official_website,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+        }
+
+    };
+
+
+    modal.classList.add(
+        "show"
+    );
+
+}
+
+
+
+/* =========================================================
+   DETAIL ROW
+========================================================= */
+
+function detailRow(
+    label,
+    value
+) {
+
+    if (
+        value === undefined ||
+        value === null ||
+        value === ""
+    ) {
+
+        return "";
+
+    }
+
+
+    return `
+
+        <div class="detail">
+
+            <span>
+                ${escapeHTML(label)}
+            </span>
+
+            <span>
+                ${escapeHTML(
+                    String(value)
+                )}
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal() {
+
+    document
+        .getElementById(
+            "platformModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+function closeModalOutside(event) {
+
+    if (
+        event.target.id ===
+        "platformModal"
+    ) {
+
+        closeModal();
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   SECURITY / HTML ESCAPING
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function escapeAttribute(value) {
+
+    return escapeHTML(value);
+
+}
+
+
+function escapeJS(value) {
+
+    return String(value ?? "")
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /'/g,
+            "\\'"
+        )
+
+        .replace(
+            /"/g,
+            '\\"'
+        );
+
+}
+
+
+
+/* =========================================================
+   START
+========================================================= */
+
+loadDirectory();
+
+</script>
+
+</body>
+</html>
